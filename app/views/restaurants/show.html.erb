@@ -9,8 +9,8 @@
   <b>Address:</b>
   <%= @restaurant.address %>
 </p>
-<div id="map_container" style="width:400px;">
-	<%= render :partial => 'restaurants/map', :locals => {:lat => @restaurant.lat, :long => @restaurant.long}%>
+<div id="map_container">
+	<%= render :partial => 'restaurants/restaurantmap'%>
 </div>
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |

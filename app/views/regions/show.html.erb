@@ -5,6 +5,10 @@
   <%= @region.name %>
 </p>
 
+<div id="map_container">
+	<%= render :partial => 'regions/regionmap'%>
+</div>
+
 
 <%= link_to 'Edit', edit_region_path(@region) %> |
 <%= link_to 'Back', regions_path %>
