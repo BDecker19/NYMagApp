@@ -11,10 +11,10 @@
   <script type="text/javascript">
     function initialize() {
       
-      var myLatLng = new google.maps.LatLng(<%=lat%>, <%=long%>);
+      var myLatlng = new google.maps.LatLng(<%=lat%>, <%=long%>);
 
       var mapOptions = {
-        center: myLatLng,
+        center: myLatlng,
         zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
@@ -23,16 +23,38 @@
           mapOptions);
     
       var marker = new google.maps.Marker({
-        position: myLatLng,
+        position: myLatlng,
+        map: map,
         title:"Hello World!"
       });
 
-      marker.setMap(map);
+      var contentString = '<div id="marker_content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+        '<div id="bodyContent">'+
+        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        'sandstone rock formation in the southern part of the '+
+        '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+      });
 
     }
+
     google.maps.event.addDomListener(window, 'load', initialize);
+  
   </script>
 
-  <div id="map-canvas" style="width:400px; height:400px;"/>
+  <div id="map-canvas" style="width:500px; height:500px;"/>
 
 </div>
