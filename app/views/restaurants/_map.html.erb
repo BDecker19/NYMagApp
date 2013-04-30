@@ -1,4 +1,3 @@
-
 <!-- will replace coordinates with "lat" and "long", which have been passed in as variables -->
 <div class="map">
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -11,7 +10,7 @@
   <script type="text/javascript">
     function initialize() {
       
-      var myLatlng = new google.maps.LatLng(<%=lat%>, <%=long%>);
+      var myLatlng = new google.maps.LatLng(<%=@restaurant.lat%>, <%=@restaurant.long%>);
 
       var mapOptions = {
         center: myLatlng,
