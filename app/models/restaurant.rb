@@ -1,5 +1,5 @@
 class Restaurant < ActiveRecord::Base
- 	attr_accessible :address, :name, :lat, :long
+ 	attr_accessible :address, :name, :region_id, :lat, :long
 
 	has_one :coordinate
 	belongs_to :region

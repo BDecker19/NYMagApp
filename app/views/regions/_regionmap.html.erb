@@ -1,4 +1,4 @@
-<div class="map">
+<div class="regionmap">
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
   <style type="text/css">
     html { height: 100% }
@@ -9,8 +9,10 @@
   <script type="text/javascript">
     function initialize() {
 
+      var mapLatlng = new google.maps.LatLng(<%=@region.restaurants[0].lat%>, <%=@region.restaurants[0].long%>);
+
       var mapOptions = {
-        center: myLatlng,
+        center: mapLatlng,
         zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
@@ -19,8 +21,8 @@
           mapOptions);
       
       var markersArray = [];
-      
-      <% @region.restaurants.each |restaurant| %>
+    
+      <% @region.restaurants.each |restaurant| do %>
         
         var myLatlng = new google.maps.LatLng(<%=restaurant.lat%>, <%=restaurant.long%>);
 
@@ -30,11 +32,11 @@
           title:"Hello World!"
         });
 
-        markersArray.push(marker)
+        markersArray.push(marker);
 
       <% end %>
 
-    }
+    };
 
     google.maps.event.addDomListener(window, 'load', initialize);
   
