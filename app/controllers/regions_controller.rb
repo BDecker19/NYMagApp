@@ -88,13 +88,15 @@ class RegionsController < ApplicationController
 
   # GET to update DB
   def refresh
-    @region = Region.find(params[:id])
-    @region.pull_restaurants
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @region }
+    ### ok to do it with this if?
+    if Region.pull_restaurants
+      flash[:notice] = "Databse successfully updated"
+    else
+      flash[:notice] = "Error updating database"
     end
+
+    render 'regions/index'
+    
   end
 
 

@@ -1,6 +1,6 @@
 NYMagProj::Application.routes.draw do
   resources :regions do
-    member do
+    collection do
       get 'refresh'
     end
   end
