@@ -88,15 +88,11 @@ class RegionsController < ApplicationController
 
   # GET to update DB
   def refresh
-    ### ok to do it with this if?
-    if Region.pull_restaurants
-      flash[:notice] = "Databse successfully updated"
-    else
-      flash[:notice] = "Error updating database"
-    end
+    @region = Region.find(params[:id])
+    @region.pull_restaurants(@region.id)
+    flash[:notice] = "Region successfully updated!"  ###should have some sort of check was created successfully?
 
-    render 'regions/index'
-    
+    render :show
   end
 
 
