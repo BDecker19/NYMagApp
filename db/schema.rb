@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(:version => 20130501135633) do
 
   create_table "regions", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "query_code"
-    t.datetime "restaurants_updated"
+    t.datetime "last_refresh"
   end
 
   create_table "restaurants", :force => true do |t|

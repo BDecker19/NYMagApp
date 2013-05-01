@@ -41,6 +41,9 @@ class RegionsController < ApplicationController
   # POST /regions.json
   def create
     @region = Region.new(params[:region])
+    @region.save
+
+    @region.pull_restaurants
 
     respond_to do |format|
       if @region.save
@@ -86,7 +89,7 @@ class RegionsController < ApplicationController
   # GET to update DB
   def refresh
     @region = Region.find(params[:id])
-    @region.destroy
+    @region.pull_restaurants
 
     respond_to do |format|
       format.html # new.html.erb
