@@ -1,6 +1,6 @@
 NYMagProj::Application.routes.draw do
   resources :regions
-
+    match 'regions/refresh' => 'regions#refresh', :via => :get
 
   resources :restaurants
 

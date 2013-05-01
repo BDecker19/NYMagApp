@@ -24,6 +24,9 @@ gem 'jquery-rails'
 gem 'geocoder'
 gem 'pry'
 
+gem 'nokogiri'
+require 'open-uri'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

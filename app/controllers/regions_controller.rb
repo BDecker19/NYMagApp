@@ -80,4 +80,20 @@ class RegionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # ---------CUSTOM METHODS----------
+
+  # GET to update DB
+  def refresh
+    @region = Region.find(params[:id])
+    @region.destroy
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @region }
+    end
+  end
+
+
+
 end
