@@ -9,32 +9,28 @@
   <script type="text/javascript">
     function initialize() {
 
-      var mapLatlng = new google.maps.LatLng(<%=@region.restaurants[0].lat%>, <%=@region.restaurants[0].long%>);
 
-      var mapOptions = {
-        center: mapLatlng,
-        zoom: 16,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-    
-      var map = new google.maps.Map(document.getElementById("map-canvas"),
-          mapOptions);
-      
+      var map = new google.maps.Map(document.getElementById("map-canvas"), {
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      var markerBounds = new google.maps.LatLngBounds();
       var markersArray = [];
-    
-      <% @region.restaurants.each do |restaurant| %>
-        
-        var myLatlng = new google.maps.LatLng(<%=restaurant.lat%>, <%=restaurant.long%>);
 
+      <% @region.restaurants.each do |restaurant| %>
+        var myLatlng = new google.maps.LatLng(<%=restaurant.lat%>, <%=restaurant.long%>);
+        markerBounds.extend(myLatlng);
+        
         var marker = new google.maps.Marker({
           position: myLatlng,
           map: map,
           title:"Hello World!"
         });
-
         markersArray.push(marker);
-
+      
       <% end %>
+
+      map.fitBounds(markerBounds);
 
     };
 
