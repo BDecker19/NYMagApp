@@ -22,7 +22,7 @@
       
       var markersArray = [];
     
-      <% @region.restaurants.each |restaurant| do %>
+      <% @region.restaurants.each do |restaurant| %>
         
         var myLatlng = new google.maps.LatLng(<%=restaurant.lat%>, <%=restaurant.long%>);
 
