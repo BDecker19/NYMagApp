@@ -89,7 +89,10 @@ class RegionsController < ApplicationController
   # GET to update DB
   def refresh
     @region = Region.find(params[:id])
-    @region.pull_restaurants(@region.id)
+    @region.pull_restaurants
+    @region.last_refresh = Time.now
+    @region.save
+
     flash[:notice] = "Region successfully updated!"  ###should have some sort of check was created successfully?
 
     render :show
