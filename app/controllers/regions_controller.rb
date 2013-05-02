@@ -84,26 +84,20 @@ class RegionsController < ApplicationController
 
   # ---------CUSTOM METHODS----------
 
-  # GET to update specific region
-  def refresh
-    @region = Region.find(params[:id])
-    @region.pull_restaurants_region
-    @region.last_refresh = Time.now
-    @region.save
-
-    flash[:notice] = "Region successfully updated!"  ###should have some sort of check was created successfully?
-    render :show
-  end
-
   # GET to update all regions
-  def refresh_all
-    Region.pull_restaurants_all
+  def refresh_db
+    Region.destroy_all
+    Restaurant.destroy_all
+
+    Region.pull_restaurants
     Region.all.each do |region|
       region.last_refresh = Time.now
       region.save
     end
     
     flash[:notice] = "Database successfully updated!"
+    
+    @regions = Region.all
     render :index
   end
 

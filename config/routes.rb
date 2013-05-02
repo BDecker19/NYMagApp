@@ -1,10 +1,7 @@
 NYMagProj::Application.routes.draw do
   resources :regions do
-    member do
-      get 'refresh'
-    end
     collection do
-      get 'refresh_all'
+      get 'refresh_db'
     end
   end
 

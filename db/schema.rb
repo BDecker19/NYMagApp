@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(:version => 20130502014423) do
     t.string   "name"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "query_code"
     t.datetime "last_refresh"
   end
 
