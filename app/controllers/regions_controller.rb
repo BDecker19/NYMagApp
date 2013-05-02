@@ -43,8 +43,6 @@ class RegionsController < ApplicationController
     @region = Region.new(params[:region])
     @region.save
 
-    @region.pull_restaurants
-
     respond_to do |format|
       if @region.save
         format.html { redirect_to @region, notice: 'Region was successfully created.' }
