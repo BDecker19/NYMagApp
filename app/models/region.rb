@@ -26,7 +26,7 @@ class Region < ActiveRecord::Base
 	doc.css("#resultsFound tr")[1..25].each do |result|
 		restaurant = Restaurant.new
 		restaurant.name = result.css(".criticsPick a").text.strip
-		restaurant.address = result.css(".address p").text.strip
+		restaurant.address = result.css(".address p").text.strip.split(',')[0]
 		region = result.css("td")[3].css("p").text
 		region_lookup = Region.find_by_name(region)
 		if region_lookup

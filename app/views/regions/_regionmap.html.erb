@@ -36,6 +36,7 @@
 
         markersArray.push(marker);
              
+        // ### works, but need to better understand javascript function scoping... 
         google.maps.event.addListener(marker, 'click', function() {
           infowindow.setContent(this.content);
           infowindow.open(map, this);
