@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502014423) do
+ActiveRecord::Schema.define(:version => 20130519030901) do
 
   create_table "regions", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.datetime "last_refresh"
+    t.string   "query_code"
   end
 
   create_table "restaurants", :force => true do |t|

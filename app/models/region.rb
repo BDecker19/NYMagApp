@@ -1,15 +1,15 @@
 class Region < ActiveRecord::Base
-  attr_accessible :name, :last_refresh
+  attr_accessible :name, :last_refresh, :query_code
 
   has_many :restaurants
 
-  def self.pull_restaurants
-  	code = 166
-  	base_url = "http://nymag.com/srch?t=restaurant&N=265+336+#{code}&No=0&Ns=nyml_sort_name%7C0"  # full critics pick query listing
+  def self.pull_restaurants(region_code = "")
+  	# defaults to all if no code specified -- kinda hacked for now to accomodate both region and all regions pull
+  	base_url = "http://nymag.com/srch?t=restaurant&N=265+336+#{region_code}&No=0&Ns=nyml_sort_name%7C0"  # full critics pick query listing
 	num_results = Region.find_number_results(base_url)
 	num_pages = (num_results/25)+1  #int division gives floor by default
 	for i in 0...num_pages
-		page_url = "http://nymag.com/srch?t=restaurant&N=265+336+#{code}&No=#{(i*25)+1}&Ns=nyml_sort_name%7C0"
+		page_url = "http://nymag.com/srch?t=restaurant&N=265+336+#{region_code}&No=#{(i*25)+1}&Ns=nyml_sort_name%7C0"
 		Region.scrape_page(page_url)
 	end
   end

@@ -102,5 +102,19 @@ class RegionsController < ApplicationController
   end
 
 
+  # GET to update all regions
+  def refresh
+    @region = Region.find(params[:id])
+    unless @region.query_code
+        flash[:notice] = "No query_code associated with region"
+        render :show
+    else
+      Restaurant.find_all_by_region_id(@region.id).each {|restaurant|
+        restaurant.destroy
+      }
+      Region.pull_restaurants(@region.query_code)
+      render :show
+    end
+  end
 
 end

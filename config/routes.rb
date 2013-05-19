@@ -3,6 +3,9 @@ NYMagProj::Application.routes.draw do
     collection do
       get 'refresh_db'
     end
+    member do
+      get 'refresh'
+    end
   end
 
 
